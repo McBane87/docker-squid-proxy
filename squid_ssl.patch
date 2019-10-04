@@ -1,0 +1,12 @@
+--- debian/rules	2019-07-24 19:33:25.000000000 +0200
++++ debian/rules.new	2019-10-04 19:14:33.208673300 +0200
+@@ -62,7 +62,8 @@
+ 		--with-filedescriptors=65536 \
+ 		--with-large-files \
+ 		--with-default-user=proxy \
+-		--with-gnutls
++		--without-gnutls \
++		--with-openssl
+ 
+ ifeq ($(DEB_HOST_ARCH_OS), kfreebsd)
+ 		DEB_CONFIGURE_EXTRA_FLAGS += --enable-kqueue
