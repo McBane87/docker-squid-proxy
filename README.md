@@ -2,7 +2,7 @@ A squid docker image based on [debians slim releases](https://hub.docker.com/_/d
 So you should be able to listen on http and https ports.
 
 ### Branches
-| Tag          | Branch          | Debian Version  | Squid Version    |
+| Docker-Tag   | Branch          | Debian Version  | Squid Version    |
 | ------------ | --------------- | --------------- | ---------------- |
 | latest       | master          | Sid             | >= 4.8           |
 | sid          | master          | Sid             | >= 4.8           |
