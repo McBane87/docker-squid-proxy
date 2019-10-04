@@ -1,0 +1,12 @@
+--- debian/rules	2018-02-11 22:00:18.000000000 +0100
++++ debian/rules.new	2019-10-04 16:11:55.623693300 +0200
+@@ -46,6 +46,8 @@
+ 		--with-pidfile=/var/run/squid.pid \
+ 		--with-filedescriptors=65536 \
+ 		--with-large-files \
++		--with-openssl \
++ 		--without-gnutls \
+ 		--with-default-user=proxy
+ 
+ BUILDINFO := $(shell lsb_release -si 2>/dev/null)
+
