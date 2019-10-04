@@ -1,6 +1,14 @@
 A squid docker image based on [debians slim releases](https://hub.docker.com/_/debian) with ssl support.  
 So you should be able to listen on http and https ports.
 
+### Branches
+| Tag          | Debian Version  | Squid Version    |
+| ------------ | --------------- | ---------------- |
+| master       | Sid             | >= 4.8           |
+| stretch      | Stretch         | 3.5              |
+| buster       | Buster          | 4.6              |
+| bullseye     | Bullseye        | 4.6              |
+
 ### HowTo Build
 ```
 docker build \
