@@ -34,7 +34,7 @@ RUN DEBIAN_FRONTEND=noninteractive && \
 	apt-get update && \
 	apt-get install -y tzdata busybox openssl libssl-dev devscripts gcc-8 g++-8 && \
 	ls -1 /usr/bin/{gcc,cpp,g++}*-8 | while read F; do ln -sf $F $(sed 's/-8$//g' <<< $F); done && \
-	ls -1 /usr/bin/x86_64-linux-gnu-*-8 | while read F; do ln -sf $F $(sed 's/-8$//g' <<< $F); done && \
+	ls -1 /usr/bin/aarch64-linux-gnu-*-8 | while read F; do ln -sf $F $(sed 's/-8$//g' <<< $F); done && \
 	mkdir /xbin && /bin/busybox --install -s /xbin && \
 	echo "---------------------------------------------------------------------------------"&& \
 	test ! -d /usr/src/squid && mkdir -p -m0777 /usr/src/squid || true && \
