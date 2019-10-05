@@ -3,7 +3,7 @@ FROM arm64v8/debian:bullseye-slim
 COPY aarch64/* /usr/bin/
 RUN [ "cross-build-start" ]
 
-RUN ln -sf /bin/bash /bin/sh
+RUN ln -sf /bin/bash /bin/sh.real
 
 #RUN echo 'deb http://deb.debian.org/debian bullseye-backports main' > /etc/apt/sources.list.d/backports.list
 #RUN echo 'deb-src http://deb.debian.org/debian bullseye-backports main' >> /etc/apt/sources.list.d/deb-sources.list
