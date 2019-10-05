@@ -1,20 +1,32 @@
 A squid docker image based on [debians slim releases](https://hub.docker.com/_/debian) with ssl support.  
 So you should be able to listen on http and https ports.
 
-### Branches
+### Branches / Tags
 | Docker-Tag   | Branch          | Debian Version  | Squid Version    |
 | ------------ | --------------- | --------------- | ---------------- |
-| latest       | master          | Sid             | >= 4.8           |
-| sid          | master          | Sid             | >= 4.8           |
 | stretch      | stretch         | Stretch         | 3.5              |
 | buster       | buster          | Buster          | 4.6              |
 | bullseye     | bullseye        | Bullseye        | 4.6              |
+| latest       | master          | Sid             | >= 4.8           |
+
+Thanks to the awesome work of [balenalib](https://hub.docker.com/u/balenalib),  
+I was able to cross build this image for arm and aarch64.  
+In order to download this image for other architechtures just use this tags-scheme:  
+```
+distahl/<Docker-Tag>-x86
+distahl/<Docker-Tag>-armv5
+distahl/<Docker-Tag>-armv7hf
+distahl/<Docker-Tag>-arm64v8
+```
+
+Please note:  
+There is no `<Docker-Tag>-amd64`, because this is the default if you only use `<Docker-Tag>`  
 
 ### HowTo Build
 ```
 docker build \
   -t squid . \
-  -f Dockerfile
+  -f <Dockerfile>
 ```
 
 ### HowTo Create
