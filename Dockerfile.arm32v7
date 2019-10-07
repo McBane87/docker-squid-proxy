@@ -28,36 +28,12 @@ ENV TZ Europe/London
 ENV PROXY_UID 13
 ENV PROXY_GID 13
 
-COPY squid_ssl.patch /tmp/squid_ssl.patch
-
 RUN DEBIAN_FRONTEND=noninteractive && \
 	apt-get update && \
-	apt-get install -y tzdata busybox openssl libssl-dev devscripts gcc-8 g++-8 && \
-	ls -1 /usr/bin/{gcc,cpp,g++}*-8 | while read F; do ln -sf $F $(sed 's/-8$//g' <<< $F); done && \
-	ls -1 /usr/bin/arm-linux-gnueabihf-*-8 | while read F; do ln -sf $F $(sed 's/-8$//g' <<< $F); done && \
+	apt-get install -y tzdata busybox openssl squid && \
 	mkdir /xbin && /bin/busybox --install -s /xbin && \
-	echo "---------------------------------------------------------------------------------"&& \
-	test ! -d /usr/src/squid && mkdir -p -m0777 /usr/src/squid || true && \
-	cd /usr/src/squid && \
-	mk-build-deps squid && \
-	dpkg -i squid-build* || true && \
-	apt-get install -y -f && \
-	rm -f squid-build-deps* && \
-	echo "---------------------------------------------------------------------------------"&& \
-	apt-get source -y squid && \
-	mv /tmp/squid_ssl.patch . && \
-	cd squid-* && \
-	patch -p1 debian/rules < ../squid_ssl.patch && \
-	debuild -us -uc && \
-	rm -f ../*-dbgsym*.deb && \
-	rm -f ../*-cgi*.deb && \
-	dpkg -i ../*.deb || true && \
-	apt-get install -y -f && \
-	echo "---------------------------------------------------------------------------------"&& \
-	apt-get remove --purge --auto-remove -y squid-build-deps devscripts gcc-8 g++-8 && \
 	apt-get clean && apt-get autoclean && \
-	rm -rf /var/lib/apt/lists/* && \
-	cd / && rm -rf /usr/src/squid
+	rm -rf /var/lib/apt/lists/*
 
 RUN mv /etc/squid /etc/squid.dist && \
 	sed -i 's/^#http_access allow localnet/http_access allow localnet/g' /etc/squid.dist/conf.d/debian.conf && \
