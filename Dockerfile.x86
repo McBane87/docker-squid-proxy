@@ -1,7 +1,6 @@
 FROM i386/debian:stretch-slim
 
-#RUN ln -sf /bin/bash /bin/sh
-RUN echo "#!/bin/bash\nnice -n19 /bin/bash \"\$@\"\nexit \$?" > /bin/nbash && chmod 755 /bin/nbash && ln -sf /bin/nbash /bin/sh
+RUN ln -sf /bin/bash /bin/sh
 
 #RUN echo 'deb http://deb.debian.org/debian stretch-backports main' > /etc/apt/sources.list.d/backports.list
 #RUN echo 'deb-src http://deb.debian.org/debian stretch-backports main' >> /etc/apt/sources.list.d/deb-sources.list
@@ -61,8 +60,6 @@ RUN mv /etc/squid /etc/squid.dist && \
 	sed -i 's/^#acl localnet/acl localnet/g' /etc/squid.dist/squid.conf && \
 	echo -e "\n\n include /etc/squid.dist/conf.d/*" >> /etc/squid.dist/squid.conf && \
 	mkdir /etc/squid
-	
-RUN ln -sf /bin/bash /bin/sh && rm -f /bin/nbash
 
 COPY ssl-selfsigned.conf /etc/squid.dist/ssl-selfsigned.conf
 COPY ssl.conf /etc/squid.dist/conf.d/ssl.conf	

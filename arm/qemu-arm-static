@@ -1,4 +1,4 @@
-#!/usr/bin/busybox sh
+#!/usr/bin/busybox-x86_64 sh
 
-busybox nice -n19 _qemu-arm-static "$@"
+busybox-x86_64 nice -n19 _qemu-arm-static "$@"
 exit $?
