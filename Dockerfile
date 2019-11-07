@@ -8,14 +8,14 @@ RUN echo 'deb-src http://deb.debian.org/debian stretch main' >> /etc/apt/sources
 
 RUN DEBIAN_FRONTEND=noninteractive && \
 	apt-get update && \
-	apt-get install -y locales && \
+	nice -n19 apt-get install -y locales && \
 	localedef -i en_US -c -f UTF-8 -A /usr/share/locale/locale.alias en_US.UTF-8 && \
 	apt-get clean && apt-get autoclean && \
 	rm -rf /var/lib/apt/lists/*
 	
 RUN DEBIAN_FRONTEND=noninteractive && \
 	apt-get update && \
-	apt-get dist-upgrade -y && \
+	nice -n19 apt-get dist-upgrade -y && \
 	apt-get clean && apt-get autoclean && \
 	rm -rf /var/lib/apt/lists/*
 
@@ -29,25 +29,25 @@ COPY squid_ssl.patch /tmp/squid_ssl.patch
 
 RUN DEBIAN_FRONTEND=noninteractive && \
 	apt-get update && \
-	apt-get install -y tzdata busybox openssl libssl1.0-dev devscripts && \
+	nice -n19 apt-get install -y tzdata busybox openssl libssl1.0-dev devscripts && \
 	mkdir /xbin && /bin/busybox --install -s /xbin && \
 	echo "---------------------------------------------------------------------------------"&& \
 	test ! -d /usr/src/squid && mkdir -p -m0777 /usr/src/squid || true && \
 	cd /usr/src/squid && \
-	mk-build-deps squid3 && \
-	dpkg -i squid3-build* || true && \
-	apt-get install -y -f && \
+	nice -n19 mk-build-deps squid3 && \
+	nice -n19 dpkg -i squid3-build* || true && \
+	nice -n19 apt-get install -y -f && \
 	rm -f squid3-build-deps* && \
 	echo "---------------------------------------------------------------------------------"&& \
 	apt-get source -y squid3 && \
 	mv /tmp/squid_ssl.patch . && \
 	cd squid3-* && \
 	patch -p1 debian/rules < ../squid_ssl.patch && \
-	debuild -us -uc && \
+	nice -n19 debuild -us -uc && \
 	rm -f ../*-dbg*.deb && \
 	rm -f ../*-cgi*.deb && \
-	dpkg -i ../*.deb || true && \
-	apt-get install -y -f && \
+	nice -n19 dpkg -i ../*.deb || true && \
+	nice -n19 apt-get install -y -f && \
 	echo "---------------------------------------------------------------------------------"&& \
 	apt-get remove --purge --auto-remove -y squid3-build-deps devscripts && \
 	apt-get clean && apt-get autoclean && \

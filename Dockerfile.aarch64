@@ -63,7 +63,7 @@ RUN mv /etc/squid /etc/squid.dist && \
 	sed -i 's/^#acl localnet/acl localnet/g' /etc/squid.dist/squid.conf && \
 	echo -e "\n\n include /etc/squid.dist/conf.d/*" >> /etc/squid.dist/squid.conf && \
 	mkdir /etc/squid
-	
+
 RUN [ "cross-build-end" ]
 
 COPY ssl-selfsigned.conf /etc/squid.dist/ssl-selfsigned.conf
