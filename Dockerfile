@@ -39,7 +39,7 @@ RUN DEBIAN_FRONTEND=noninteractive && \
 	nice -n19 apt-get install -y -f && \
 	rm -f squid3-build-deps* && \
 	echo "---------------------------------------------------------------------------------"&& \
-	apt-get source -y squid3 && \
+	nice -n19 apt-get source -y squid3 && \
 	mv /tmp/squid_ssl.patch . && \
 	cd squid3-* && \
 	patch -p1 debian/rules < ../squid_ssl.patch && \
@@ -49,7 +49,7 @@ RUN DEBIAN_FRONTEND=noninteractive && \
 	nice -n19 dpkg -i ../*.deb || true && \
 	nice -n19 apt-get install -y -f && \
 	echo "---------------------------------------------------------------------------------"&& \
-	apt-get remove --purge --auto-remove -y squid3-build-deps devscripts && \
+	nice -n19 apt-get remove --purge --auto-remove -y squid3-build-deps devscripts && \
 	apt-get clean && apt-get autoclean && \
 	rm -rf /var/lib/apt/lists/* && \
 	cd / && rm -rf /usr/src/squid
