@@ -8,14 +8,14 @@ RUN echo 'deb-src http://deb.debian.org/debian sid main' >> /etc/apt/sources.lis
 
 RUN DEBIAN_FRONTEND=noninteractive && \
 	apt-get update && \
-	apt-get install -y locales && \
+	nice -n19 apt-get install -y locales && \
 	localedef -i en_US -c -f UTF-8 -A /usr/share/locale/locale.alias en_US.UTF-8 && \
 	apt-get clean && apt-get autoclean && \
 	rm -rf /var/lib/apt/lists/*
 	
 RUN DEBIAN_FRONTEND=noninteractive && \
 	apt-get update && \
-	apt-get dist-upgrade -y && \
+	nice -n19 apt-get dist-upgrade -y && \
 	apt-get clean && apt-get autoclean && \
 	rm -rf /var/lib/apt/lists/*
 	
@@ -27,7 +27,7 @@ ENV PROXY_GID 13
 
 RUN DEBIAN_FRONTEND=noninteractive && \
 	apt-get update && \
-	apt-get install -y tzdata busybox openssl squid && \
+	nice -n19 apt-get install -y tzdata busybox openssl squid && \
 	mkdir /xbin && /bin/busybox --install -s /xbin && \
 	apt-get clean && apt-get autoclean && \
 	rm -rf /var/lib/apt/lists/*
