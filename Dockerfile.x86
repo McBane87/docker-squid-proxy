@@ -6,6 +6,10 @@ RUN ln -sf /bin/bash /bin/sh
 #RUN echo 'deb-src http://deb.debian.org/debian bullseye-backports main' >> /etc/apt/sources.list.d/deb-sources.list
 RUN echo 'deb-src http://deb.debian.org/debian bullseye main' >> /etc/apt/sources.list.d/deb-sources.list
 
+#Workaround for unsigned repo in i386 relese (2020-08-14)
+RUN sed -i 's/^deb /deb [trusted=yes] /g' /etc/apt/sources.list
+RUN sed -i 's/^deb-src /deb-src [trusted=yes] /g' /etc/apt/sources.list
+
 RUN DEBIAN_FRONTEND=noninteractive && \
 	apt-get update && \
 	nice -n19 apt-get install -y locales && \
