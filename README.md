@@ -6,8 +6,8 @@ So you should be able to listen on http and https ports.
 | ------------ | --------------- | --------------- | ---------------- |
 | stretch      | stretch         | Stretch         | 3.5              |
 | buster       | buster          | Buster          | 4.6              |
-| bullseye     | bullseye        | Bullseye        | 4.6              |
-| latest       | master          | Sid             | >= 4.8           |
+| bullseye     | bullseye        | Bullseye        | >= 4.12          |
+| latest       | master          | Sid             | >= 4.12          |
 
 Thanks to the awesome work of [balenalib](https://hub.docker.com/u/balenalib),  
 I was able to cross build this image for arm and aarch64.  
