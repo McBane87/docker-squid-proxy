@@ -7,8 +7,15 @@ RUN ln -sf /bin/bash /bin/sh
 RUN echo 'deb-src http://deb.debian.org/debian bullseye main' >> /etc/apt/sources.list.d/deb-sources.list
 
 #Workaround for unsigned repo in i386 relese (2020-08-14)
-RUN sed -i 's/^deb /deb [trusted=yes] /g' /etc/apt/sources.list
-RUN sed -i 's/^deb-src /deb-src [trusted=yes] /g' /etc/apt/sources.list
+RUN find /etc/apt/ -name "*.list" | xargs -n1 sed -i 's/^deb /deb [trusted=yes] /g'
+RUN find /etc/apt/ -name "*.list" | xargs -n1 sed -i 's/^deb-src /deb-src [trusted=yes] /g'
+
+# Workaround for tar,touch,cp,sleep not working in newer releases
+COPY x86/tar /bin/tar
+COPY x86/cp /bin/cp
+COPY x86/sleep /bin/sleep
+COPY x86/mv /bin/mv
+COPY x86/touch /usr/bin/touch
 
 RUN DEBIAN_FRONTEND=noninteractive && \
 	apt-get update && \
