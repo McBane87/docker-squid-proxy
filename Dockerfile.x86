@@ -11,6 +11,14 @@ RUN find /etc/apt/ -name "*.list" | xargs -n1 sed -i 's/^deb /deb [trusted=yes] 
 RUN find /etc/apt/ -name "*.list" | xargs -n1 sed -i 's/^deb-src /deb-src [trusted=yes] /g'
 
 # Workaround for tar,touch,cp,sleep not working in newer releases
+RUN \
+        mv /bin/tar /bin/tar.orig && \
+        mv /bin/cp /bin/cp.orig && \
+        mv /bin/sleep /bin/sleep.orig && \
+        mv /usr/bin/touch /usr/bin/touch.orig && \
+        mv /bin/mv /bin/mv.orig && \
+        apt-mark hold coreutils tar
+
 COPY x86/tar /bin/tar
 COPY x86/cp /bin/cp
 COPY x86/sleep /bin/sleep
@@ -51,6 +59,15 @@ RUN mv /etc/squid /etc/squid.dist && \
 COPY ssl-selfsigned.conf /etc/squid.dist/ssl-selfsigned.conf
 COPY ssl.conf /etc/squid.dist/conf.d/ssl.conf	
 COPY start-squid.sh /bin/start-squid.sh
+
+# Revert Workaround from start of Dockerfile
+RUN \
+        mv /bin/tar.orig /bin/tar && \
+        mv /bin/cp.orig /bin/cp && \
+        mv /bin/sleep.orig /bin/sleep && \
+        mv /bin/mv.orig /bin/mv && \
+        mv /usr/bin/touch.orig /usr/bin/touch && \
+        apt-mark unhold coreutils tar
 
 VOLUME /etc/squid
 VOLUME /var/log/squid
