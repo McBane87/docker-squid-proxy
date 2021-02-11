@@ -71,7 +71,7 @@ if [ ! -x $DAEMON ]; then echo "ERROR $DAEMON is not executable!"; exit 0; fi
 ulimit -n 65535
 
 find_cache_dir () {
-        w="	" # space tab
+        w="     " # space tab
         res=`$DAEMON -k parse -f $CONFIG 2>&1 |
                 grep "Processing:" |
                 sed s/.*Processing:\ // |
@@ -85,7 +85,7 @@ find_cache_dir () {
 }
 
 grepconf () {
-        w="	" # space tab
+        w="     " # space tab
         res=`$DAEMON -k parse -f $CONFIG 2>&1 |
                 grep "Processing:" |
                 sed s/.*Processing:\ // |
