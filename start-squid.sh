@@ -120,6 +120,12 @@ run_dir=/var/run/squid
 #
 create_run_dir
 
+[[ ! -f /etc/squid/conf.d/pidfile.conf && $run_dir != "" ]] && \
+	echo "pid_filename $run_dir/squid.pid" > /etc/squid/conf.d/pidfile.conf
+
+[[ $run_dir != "" ]] && rm -rf $run_dir/*
+rm -f /run/squid.pid #shouldn't be there, but just to be sure
+
 #
 # Create spool dirs if they don't exist.
 #
@@ -133,5 +139,8 @@ fi
 umask 027
 ulimit -n 65535
 cd $run_dir
+
+[[ $run_dir != "" ]] && rm -rf $run_dir/*
+rm -f /run/squid.pid #shouldn't be there, but just to be sure
 
 $DAEMON $SQUID_ARGS
