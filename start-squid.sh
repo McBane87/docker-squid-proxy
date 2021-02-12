@@ -132,7 +132,7 @@ rm -f /run/squid.pid #shouldn't be there, but just to be sure
 if test -d "$cache_dir" -a ! -d "$cache_dir/00"
 then
         log_warning_msg "Creating $DESC cache structure"
-        $DAEMON -z -f $CONFIG
+        $DAEMON --foreground -z -f $CONFIG
         [ -x /sbin/restorecon ] && restorecon -R $cache_dir
 fi
 
