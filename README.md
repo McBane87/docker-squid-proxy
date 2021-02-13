@@ -9,7 +9,7 @@ So you should be able to listen on http and https ports.
 | bullseye     | bullseye        | Bullseye        | >= 4.12          |
 | latest       | master          | Sid             | >= 4.12          |
 
-Thanks to the awesome work of [balenalib](https://hub.docker.com/u/balenalib),  
+Thanks to the awesome work of [balenalib](https://hub.docker.com/u/balenalib) (GIT: [qemu-execve](https://github.com/balena-io/qemu) / [resin-xbuild](https://github.com/balena-io-library/armv7hf-debian-qemu)),  
 I was able to cross build this image for arm and aarch64.  
 In order to download this image for other architechtures just use this tags-scheme:  
 ```
