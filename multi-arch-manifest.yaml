@@ -1,4 +1,4 @@
-image: kevinpawsey/docker-squid-proxy:latest
+image: kevinpawsey/sl-squid:latest
 manifests:
   - image: kevinpawsey/sl-squid:amd64
     platform:
