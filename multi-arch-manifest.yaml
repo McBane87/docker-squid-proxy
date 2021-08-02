@@ -6,11 +6,11 @@ manifests:
       os: linux
   - image: kevinpawsey/sl-squid:arm64v8
     platform:
-      architecture: arm
+      architecture: arm64
       os: linux
       variant: v8
   - image: kevinpawsey/sl-squid:armv7hf
     platform:
-      architecture: arm
+      architecture: arm32
       os: linux
       variant: v7
