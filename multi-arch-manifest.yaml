@@ -1,0 +1,16 @@
+image: kevinpawsey/docker-squid-proxy:latest
+manifests:
+  - image: kevinpawsey/docker-squid-proxy:amd64
+    platform:
+      architecture: amd64
+      os: linux
+  - image: kevinpawsey/docker-squid-proxy:arm64v8
+    platform:
+      architecture: arm
+      os: linux
+      variant: v8
+  - image: kevinpawsey/docker-squid-proxy:armv7hf
+    platform:
+      architecture: arm
+      os: linux
+      variant: v7
