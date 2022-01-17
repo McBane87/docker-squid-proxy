@@ -53,3 +53,4 @@ EXPOSE 3128/tcp
 EXPOSE 3129/tcp
 
 ENTRYPOINT ["/bin/start-squid.sh"]
+
