@@ -1,0 +1,29 @@
+#!/usr/bin/perl
+ 
+$| = 1;
+ 
+while (<>) {
+    chomp;
+    if (m/sim(.*?)\.agni\.lindenlab\.com(.*?)\/cap\/(.*?)\/\?texture_id=(.*)/)
+    {
+        print "http://agni.lindenlab.com/texture/" . $4 . "\n";
+        goto STOP;
+    }
+    if (m/sim(.*?)\.agni\.lindenlab\.com(.*?)\/cap\/(.*?)\/\?mesh_id=(.*)/)
+    {
+        print "http://agni.lindenlab.com/mesh/" . $4 . "\n";
+        goto STOP;
+    }
+    if (m/asset-cdn\.agni\.lindenlab\.com(.*?)\/\?texture_id=(.*)/)
+    {
+        print "http://agni.lindenlab.com/texture/" . $2 . "\n";
+        goto STOP;
+    }
+    if (m/asset-cdn\.agni\.lindenlab\.com(.*?)\/\?mesh_id=(.*)/)
+    {
+        print "http://agni.lindenlab.com/mesh/" . $2 . "\n";
+        goto STOP;
+    }
+    print $_ . "\n";
+    STOP:
+}
