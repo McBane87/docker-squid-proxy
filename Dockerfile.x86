@@ -1,10 +1,10 @@
-FROM i386/debian:sid-slim
+FROM i386/debian:bookworm-slim
 
 RUN ln -sf /bin/bash /bin/sh
 
-#RUN echo 'deb http://deb.debian.org/debian sid-backports main' > /etc/apt/sources.list.d/backports.list
-#RUN echo 'deb-src http://deb.debian.org/debian sid-backports main' >> /etc/apt/sources.list.d/deb-sources.list
-RUN echo 'deb-src http://deb.debian.org/debian sid main' >> /etc/apt/sources.list.d/deb-sources.list
+#RUN echo 'deb http://deb.debian.org/debian bookworm-backports main' > /etc/apt/sources.list.d/backports.list
+#RUN echo 'deb-src http://deb.debian.org/debian bookworm-backports main' >> /etc/apt/sources.list.d/deb-sources.list
+RUN echo 'deb-src http://deb.debian.org/debian bookworm main' >> /etc/apt/sources.list.d/deb-sources.list
 
 #Workaround for unsigned repo in i386 relese (2020-08-14)
 RUN find /etc/apt/ -name "*.list" | xargs -n1 sed -i 's/^deb /deb [trusted=yes] /g'
