@@ -2,10 +2,6 @@ FROM debian:bookworm-slim
 
 RUN ln -sf /bin/bash /bin/sh
 
-#RUN echo 'deb http://deb.debian.org/debian bookworm-backports main' > /etc/apt/sources.list.d/backports.list
-#RUN echo 'deb-src http://deb.debian.org/debian bookworm-backports main' >> /etc/apt/sources.list.d/deb-sources.list
-RUN echo 'deb-src http://deb.debian.org/debian bookworm main' >> /etc/apt/sources.list.d/deb-sources.list
-
 RUN DEBIAN_FRONTEND=noninteractive && \
 	apt-get update && \
 	nice -n19 apt-get install -y locales && \
