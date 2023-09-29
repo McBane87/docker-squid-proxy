@@ -2,8 +2,6 @@ FROM i386/debian:bookworm-slim
 
 RUN ln -sf /bin/bash /bin/sh
 
-RUN find /etc/apt/ -name "*.list" | xargs -n1 sed -i 's/^deb-src /deb-src [trusted=yes] /g'
-
 RUN DEBIAN_FRONTEND=noninteractive && \
 	apt-get update && \
 	nice -n19 apt-get install -y locales && \
