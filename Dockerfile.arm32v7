@@ -30,7 +30,7 @@ ENV PROXY_GID 13
 
 RUN DEBIAN_FRONTEND=noninteractive && \
 	apt-get update && \
-	apt-get install -y tzdata busybox openssl squid python2 curl && \
+	apt-get install -y tzdata busybox openssl squid python2.7 curl && \
 	mkdir /xbin && /bin/busybox --install -s /xbin && \
 	apt-get clean && apt-get autoclean && \
 	rm -rf /var/lib/apt/lists/*
