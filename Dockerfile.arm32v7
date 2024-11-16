@@ -1,4 +1,4 @@
-FROM arm32v7/debian:bullseye-slim
+FROM --platform=linux/arm/v7 debian:bullseye-slim
 
 COPY arm/* /usr/bin/
 RUN [ "cross-build-start" ]
@@ -11,7 +11,7 @@ RUN DEBIAN_FRONTEND=noninteractive && \
 	localedef -i en_US -c -f UTF-8 -A /usr/share/locale/locale.alias en_US.UTF-8 && \
 	apt-get clean && apt-get autoclean && \
 	rm -rf /var/lib/apt/lists/*
-	
+
 RUN DEBIAN_FRONTEND=noninteractive && \
 	apt-get update && \
 	apt-get dist-upgrade -y && \
@@ -34,11 +34,11 @@ RUN DEBIAN_FRONTEND=noninteractive && \
 RUN mv /etc/squid /etc/squid.dist && \
 	sed -i 's/^#http_access allow localnet/http_access allow localnet/g' /etc/squid.dist/conf.d/debian.conf && \
 	mkdir /etc/squid
-	
+
 RUN [ "cross-build-end" ]
 
 COPY ssl-selfsigned.conf /etc/squid.dist/ssl-selfsigned.conf
-COPY ssl.conf /etc/squid.dist/conf.d/ssl.conf	
+COPY ssl.conf /etc/squid.dist/conf.d/ssl.conf
 COPY start-squid.sh /bin/start-squid.sh
 
 VOLUME /etc/squid
