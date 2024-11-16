@@ -1,4 +1,4 @@
-FROM i386/debian:buster-slim
+FROM --platform=linux/386 debian:buster-slim
 
 RUN ln -sf /bin/bash /bin/sh
 
@@ -8,7 +8,7 @@ RUN DEBIAN_FRONTEND=noninteractive && \
 	localedef -i en_US -c -f UTF-8 -A /usr/share/locale/locale.alias en_US.UTF-8 && \
 	apt-get clean && apt-get autoclean && \
 	rm -rf /var/lib/apt/lists/*
-	
+
 RUN DEBIAN_FRONTEND=noninteractive && \
 	apt-get update && \
 	nice -n19 apt-get dist-upgrade -y && \
@@ -31,10 +31,10 @@ RUN DEBIAN_FRONTEND=noninteractive && \
 RUN mv /etc/squid /etc/squid.dist && \
 	sed -i 's/^#http_access allow localnet/http_access allow localnet/g' /etc/squid.dist/conf.d/debian.conf && \
 	mkdir /etc/squid
-	
+
 
 COPY ssl-selfsigned.conf /etc/squid.dist/ssl-selfsigned.conf
-COPY ssl.conf /etc/squid.dist/conf.d/ssl.conf	
+COPY ssl.conf /etc/squid.dist/conf.d/ssl.conf
 COPY start-squid.sh /bin/start-squid.sh
 
 VOLUME /etc/squid
