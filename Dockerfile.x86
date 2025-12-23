@@ -1,4 +1,4 @@
-FROM --platform=linux/386 debian:sid-slim
+FROM --platform=linux/386 debian:trixie-slim
 
 RUN ln -sf /bin/bash /bin/sh
 

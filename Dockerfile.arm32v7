@@ -1,4 +1,4 @@
-FROM --platform=linux/arm/v7 debian:sid-slim
+FROM --platform=linux/arm/v7 debian:trixie-slim
 
 COPY arm/* /usr/bin/
 RUN [ "cross-build-start" ]

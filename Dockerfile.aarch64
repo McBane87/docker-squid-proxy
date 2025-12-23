@@ -1,4 +1,4 @@
-FROM --platform=linux/arm64/v8 debian:sid-slim
+FROM --platform=linux/arm64/v8 debian:trixie-slim
 
 COPY aarch64/* /usr/bin/
 RUN [ "cross-build-start" ]
