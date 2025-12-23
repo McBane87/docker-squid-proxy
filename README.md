@@ -5,10 +5,11 @@ So you should be able to listen on http and https ports.
 | Docker-Tag   | Branch          | Debian Version  | Squid Version    | Status           |
 | ------------ | --------------- | --------------- | ---------------- | ---------------- |
 | stretch      | stretch         | Stretch (9)     | 3.5              | Discontinued     |
-| buster       | buster          | Buster (10)     | 4.6              | Active           |
+| buster       | buster          | Buster (10)     | 4.6              | Discontinued     |
 | bullseye     | bullseye        | Bullseye (11)   | 4.13             | Active           |
-| bookworm     | bookworm        | Bookworm (12)   | >= 5.2           | Active           |
-| latest       | master          | Sid             | >= 5.2           | Active           |
+| bookworm     | bookworm        | Bookworm (12)   | 5.7              | Active           |
+| trixie       | trixie          | Trixie (13)     | 6.13             | Active           |
+| latest       | master          | Sid             | >= 7.2           | Active           |
 
 Thanks to the awesome work of [balenalib](https://hub.docker.com/u/balenalib) (GIT: [qemu-execve](https://github.com/balena-io/qemu) / [resin-xbuild](https://github.com/balena-io-library/armv7hf-debian-qemu)),  
 I was able to cross build this image for arm and aarch64.  
